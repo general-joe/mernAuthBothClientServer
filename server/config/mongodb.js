@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 
 //another way of connecting mongodb database
 
-export const connectDB = async () => {
+ const connectDB = async () => {
   try {
     const uri = process.env.MONGODB_URI;
     if (!uri)
@@ -28,3 +28,5 @@ export const connectDB = async () => {
     process.exit(1);
   }
 };
+
+export default connectDB;

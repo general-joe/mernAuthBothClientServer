@@ -7,9 +7,10 @@ import "dotenv/config";
 //we import cookieParser
 import cookieParser from "cookie-parser";
 //import connectDB funtion from config directory
-import { connectDB } from "./config/mongodb.js";
+import connectDB  from "./config/mongodb.js";
 //We are importing authRouter here
-import { authRouter } from "./routes/authRoutes.js";
+import authRouter  from "./routes/authRoutes.js";
+import userRouter from "./routes/userRoute.js";
 //let's create a new express app
 const app = express();
 //we create port variable from the .env file
@@ -28,6 +29,7 @@ app.use(cors({ credentials: true }));
 app.get("/", (req, res) => res.send("API working"));
 //we are using authRouter here as root path and middleware
 app.use("/api/auth", authRouter);
+app.use("/api/user", userRouter);
 
 //The app is listen to request on the port 4000 here
 app.listen(PORT, () => console.log(`server is running on port ${PORT}`));
