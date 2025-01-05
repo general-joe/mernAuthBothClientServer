@@ -1,32 +1,26 @@
 import { userModel } from "../models/userModel.js";
 
-
 export const getUserData = async (req, res) => {
-    try {
-        const { userId } = req.body;
-        const user = await userModel.findById(userId);
-        if(!user){
-            return res.status(404).json({success: false, message: "User not found" });
-        }
-
-        res.status(200).json({
-          success: true,
-          userData: {
-            name: user.name,
-            isAccountVerified: user.isAccountVerified,
-
-            
-          },
-        });
-        
-    } catch (error) {
-            return res
-              .status(500)
-              .json({ success: false, message: error.message });
-
+  try {
+    const { userId } = req.body;
+    const user = await userModel.findById(userId);
+    if (!user) {
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
     }
-}
 
+    res.status(200).json({
+      success: true,
+      userData: {
+        name: user.name,
+        isAccountVerified: user.isAccountVerified,
+      },
+    });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
 
 // Update user function
 export const updateUser = async (req, res) => {
@@ -73,14 +67,6 @@ export const updateUser = async (req, res) => {
 
 export const deleteUser = async (req, res) => {
   const { userId } = req.params; // User ID from request parameters
-
-  // Validate userId format
-  if (!isValidObjectId(userId)) {
-    return res.status(400).json({
-      success: false,
-      message: "Invalid User ID format.",
-    });
-  }
 
   try {
     // Check if the user exists
