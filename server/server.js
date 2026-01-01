@@ -34,3 +34,7 @@ app.use("/api/user", userRouter);
 
 //The app is listen to request on the port 4000 here
 app.listen(PORT, () => console.log(`server is running on port ${PORT}`));
+
+
+
+

@@ -10,7 +10,7 @@ import mongoose from "mongoose";
     if (!uri)
       throw new Error("MONGODB_URI is missing in environment variables");
 
-    await mongoose.connect(`${uri}/authentication-project`, {
+    await mongoose.connect(`${uri}/mernAuthBackendApi`, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
